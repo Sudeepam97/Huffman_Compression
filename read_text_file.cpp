@@ -1,3 +1,4 @@
+//#include <iostream>
 #include <fstream>
 #include <string>
 #include "read_text_file.h"
@@ -12,5 +13,6 @@ std::string read_text_file() {
   message.resize(mesg_len);
   f.read(&message[0], mesg_len);
   f.close();
+  //std::cout << message << "\n";
   return message;
 }

@@ -1,13 +1,13 @@
 #include <iostream>
 #include <string>
+#include <tuple>
 #include "node_definition.h"
 #include "create_list.h"
 
-extern int list_size;
-extern node *first_node;
-extern node *last_node;
-
-void create_list(std::string str) {
+std::tuple<node*, node*, int> create_list(std::string str) {
+  node *first_node = NULL; //points to the first_node of the list.
+  node *last_node = NULL;  //points to the last_node node of the list.
+  int list_size = 0;
   int freq = 0;
   std::string str_copy = str;
   // Loop over the entire message string.
@@ -44,8 +44,13 @@ void create_list(std::string str) {
     freq = 0;
     str = str_copy;
   }
+  //print_list();
+  std::tuple <node*, node*, int> list;
+  list = std::make_tuple(first_node, last_node, list_size);
+  return list;
 }
 
+/*
 void print_list(){
   node *c = first_node; //c is used as a counter variable
   while (c != NULL){
@@ -54,3 +59,4 @@ void print_list(){
   }
   std::cout << "\n" << "ohh, and the length is: " << list_size << "\n\n";
 }
+*/

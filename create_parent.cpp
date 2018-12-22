@@ -2,10 +2,6 @@
 #include "node_definition.h"
 #include "create_parent.h"
 
-extern int list_size;
-extern node *first_node;
-extern node *last_node;
-
 node* create_parent (node *lchild, node *rchild) {
   node *p = new node; // A pointer to our newly created parent node
   p->data = '\0';

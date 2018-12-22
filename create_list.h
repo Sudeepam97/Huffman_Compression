@@ -1,7 +1,7 @@
 #ifndef CREATELIST_H_
 #define CREATELIST_H_
 
-void create_list(std::string);
+std::tuple<node*, node*, int> create_list(std::string);
 void print_list();
 
 #endif

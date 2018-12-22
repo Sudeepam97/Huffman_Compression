@@ -3,8 +3,6 @@
 #include "node_definition.h"
 #include "traverse_tree.h"
 
-extern int list_size;
-extern node *first_node;
 extern std::vector<std::string> codes;
 extern std::vector<char> characters;
 
