@@ -6,7 +6,7 @@
 #include "insert_new.h"
 #include "create_huffman_tree.h"
 
-std::tuple<node*, int> create_huffman_tree(std::tuple <node*, node*, int> list){
+std::tuple <node*, int> create_huffman_tree(std::tuple <node*, node*, int> list){
   node *lc = NULL, *rc = NULL, *parent = NULL;
   node *first_node = NULL, *last_node = NULL;
   int list_size = 0;

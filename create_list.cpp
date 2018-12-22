@@ -4,7 +4,7 @@
 #include "node_definition.h"
 #include "create_list.h"
 
-std::tuple<node*, node*, int> create_list(std::string str) {
+std::tuple <node*, node*, int> create_list(std::string str) {
   node *first_node = NULL; //points to the first_node of the list.
   node *last_node = NULL;  //points to the last_node node of the list.
   int list_size = 0;

@@ -3,8 +3,8 @@
 #include "node_definition.h"
 #include "traverse_tree.h"
 
-extern std::vector<std::string> codes;
-extern std::vector<char> characters;
+extern std::vector <std::string> codes;
+extern std::vector <char> characters;
 
 void traverse_tree(node* root, char this_code[], int code_length) {
   // Assign 0 to left edge and recur, if root->leftc != NULL)
@@ -20,10 +20,10 @@ void traverse_tree(node* root, char this_code[], int code_length) {
   // Check if we are at a leaf node
   if (!(root->leftc) && !(root->rightc)) {
     std::string str = "";
-    characters.push_back(root->data);
     for (int i = 0; i < code_length; ++i)
       str = str + this_code[i] ;
     codes.push_back(str);
+    characters.push_back(root->data);
     //str = "";
   }
 }

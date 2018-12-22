@@ -18,18 +18,18 @@ is converted into a binary tree, as directed by the Huffman's algorithm.
 Then, we read the character encodings from the tree and write them into a
 binary file to encrypt and compress the original text file/image. */
 
-std::vector<std::string> codes;
-std::vector<char> characters;
+std::vector <std::string> codes;
+std::vector <char> characters;
 
 void print_codes(int);
 
 int main() {
   std::tuple <node*, node*, int> list;
+  std::tuple <node*, int> tree;
   int list_size = 0;
   node *root = NULL;
   std::string message = read_text_file(); // Read the text file.
-  list = create_list(message); // Create a doubly linked list.
-  std::tuple<node*, int> tree;
+  list = create_list(message);            // Create a doubly linked list.
   tree = create_huffman_tree(list);
   std::tie(root, list_size) = tree;
   char this_code[64] = {'\0'};
