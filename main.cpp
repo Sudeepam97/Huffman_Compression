@@ -1,5 +1,5 @@
 #include <iostream>
-#include <vector>
+#include <map>
 #include <string>
 #include <tuple>
 #include "node_definition.h"
@@ -18,9 +18,7 @@ is converted into a binary tree, as directed by the Huffman's algorithm.
 Then, we read the character encodings from the tree and write them into a
 binary file to encrypt and compress the original text file/image. */
 
-std::vector <std::string> codes;
-std::vector <char> characters;
-
+std::map <char, std::string> encoder;
 void print_codes(int);
 
 int main() {
@@ -35,14 +33,15 @@ int main() {
   char this_code[64] = {'\0'};
   int code_length = 0;
   traverse_tree(root, this_code, code_length); // Print the Huffman Codes.
-  list_size = characters.size();
+  list_size = encoder.size();
   std::cout << "The size is: " << list_size << '\n';
   print_codes(list_size);
   return 1;
 }
 
 void print_codes(int list_size){
-  for (int i = 0; i < list_size; i++){
-    std::cout << characters.at(i) << '\t' << codes.at(i) << "\n";
+  std::map <char, std::string>::iterator itr;
+  for (itr = encoder.begin(); itr != encoder.end(); ++itr) {
+    std::cout << itr->first << '\t' << itr->second << "\n";
   }
 }
