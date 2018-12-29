@@ -1,25 +1,26 @@
 #include <iostream>
 #include <string>
 #include <tuple>
+#include <vector>
 #include "node_definition.h"
 #include "create_list.h"
 
-std::tuple <node*, node*, int> create_list(std::string str) {
+std::tuple <node*, node*, int> create_list(std::vector <int> img) {
   node *first_node = NULL; //points to the first_node of the list.
   node *last_node = NULL;  //points to the last_node node of the list.
   int list_size = 0;
   int freq[256] = {0};
 
-  for (int i = 0; i < str.size(); i++) {
-    freq[int(str[i])]++;
+  for (int i = 0; i < img.size(); i++) {
+    freq[img.at(i)]++;
   }
 
-  for (int i = 0; i < str.size(); i++) {
-    if (freq[int(str[i])] != 0) {
+  for (int i = 0; i < img.size(); i++) {
+    if (freq[img[i]] != 0) {
       // Create a node and fill all its entries.
       node *new_node = new node;
-      new_node->data = str[i];
-      new_node->freq = freq[int(str[i])];
+      new_node->data = img[i];
+      new_node->freq = freq[img[i]];
       new_node->left = NULL;
       new_node->leftc = NULL;
       new_node->right = NULL;
@@ -36,10 +37,9 @@ std::tuple <node*, node*, int> create_list(std::string str) {
       }
       // Make sure to keep track of the number of items.
       list_size++;
-      freq[int(str[i])] = 0;
+      freq[img[i]] = 0;
     }
   }
-
   //print_list(first_node, last_node, list_size);
   std::tuple <node*, node*, int> list;
   list = std::make_tuple(first_node, last_node, list_size);

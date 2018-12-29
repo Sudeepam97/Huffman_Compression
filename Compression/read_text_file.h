@@ -1,6 +1,6 @@
 #ifndef READTEXTFILE_H_
 #define READTEXTFILE_H_
 
-std::string read_text_file();
+std::vector <int> read_text_file();
 
 #endif

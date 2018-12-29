@@ -1,17 +1,22 @@
 #include <iostream>
 #include <map>
 #include <string>
+#include <vector>
 #include <fstream>
 #include <bitset>
 #include "node_definition.h"
 #include "compress_data.h"
 
-extern std::map <char, std::string> encoder;
+extern std::map <int, std::string> encoder;
 
-void compress_data (std::string msg){
+void compress_data (std::vector <int> img){
   std::string bit_seq = "", group = "", encrypted = "";
-  for (int i = 0; i < msg.size(); i++)
-    bit_seq = bit_seq + encoder.at(msg[i]);
+
+  for (int i = 0; i < img.size(); i++)
+    bit_seq = bit_seq + encoder.at(img[i]);
+
+  std::cout << bit_seq << "\n";
+
   for (int i = 0; i < bit_seq.size(); i++) {
     group = group + bit_seq[i];
     if (group.size() == 8) {
@@ -19,6 +24,7 @@ void compress_data (std::string msg){
       group = "";
     }
   }
+
   std::string edge_case((8 - group.size()), '0');
   edge_case = group + edge_case;
   encrypted = encrypted + str_to_char(edge_case);
@@ -26,7 +32,7 @@ void compress_data (std::string msg){
   f.open ("compressed/data.txt");
   g.open ("compressed/key.txt");
   f << (8 - group.size()) << encrypted;
-  std::map <char, std::string>::iterator itr;
+  std::map <int, std::string>::iterator itr;
   for (itr = encoder.begin(); itr != encoder.end(); ++itr) {
     g << itr->first << '\n' << itr->second << "\n";
   }

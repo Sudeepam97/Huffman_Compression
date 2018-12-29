@@ -1,9 +1,9 @@
-//#include <iostream>
 #include <fstream>
 #include <string>
+#include <vector>
 #include "read_text_file.h"
 
-std::string read_text_file() {
+std::vector <int> read_text_file() {
   std::ifstream f;
   std::string message;
   f.open("message.txt");
@@ -13,6 +13,9 @@ std::string read_text_file() {
   message.resize(mesg_len);
   f.read(&message[0], mesg_len);
   f.close();
-  //std::cout << message << "\n";
-  return message;
+  std::vector<int> text;
+  for (int i = 0; i < message.size(); i++){
+    text.push_back (int(message[i]));
+  }
+  return text;
 }

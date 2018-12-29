@@ -10,7 +10,7 @@
 // hybrid of a binary tree and a doubly linked list.
 
 struct node {
-    char data; // The character which is to be encoded
+    int data; // The integer which is to be encoded
     int freq;  // The number of times this character appears in the message
     struct node *left, *right, *leftc, *rightc;
     // leftc: Points to the left child of the binary sub-tree.
