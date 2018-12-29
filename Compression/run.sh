@@ -1,3 +1,4 @@
+mkdir compressed
 g++ -c read_text_file.cpp
 g++ -c create_list.cpp
 g++ -c extract_min.cpp
