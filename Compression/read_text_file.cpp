@@ -1,3 +1,4 @@
+#include <iostream>
 #include <fstream>
 #include <string>
 #include <vector>
@@ -14,8 +15,17 @@ std::vector <int> read_text_file() {
   f.read(&message[0], mesg_len);
   f.close();
   std::vector<int> text;
+  //std::vector<char> v;
   for (int i = 0; i < message.size(); i++){
+    //v.push_back (message[i]);
+    /*if (int(message[i]) < 0){
+      std::cout << message[i-3] << message[i-2] << message[i-1] << message[i] << message[i+1] << "\n";
+    }*/
     text.push_back (int(message[i]));
   }
+  /*
+  for (int i = 0; i < text.size(); i++){
+    std::cout << v.at (i) << "\t" << text.at(i) << "\t" << "\t";
+  }*/
   return text;
 }

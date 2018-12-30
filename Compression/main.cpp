@@ -71,5 +71,4 @@ void print_codes(int list_size){
   for (itr = encoder.begin(); itr != encoder.end(); ++itr) {
     std::cout << itr->first << '\t' << itr->second << "\n";
   }
-}
-*/
+}*/

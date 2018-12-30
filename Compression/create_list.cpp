@@ -54,5 +54,4 @@ void print_list(node *first_node, node *last_node, int list_size){
     c = c->right;
   }
   std::cout << "\n" << "ohh, and the length is: " << list_size << "\n\n";
-}
-*/
+}*/

@@ -15,8 +15,6 @@ void compress_data (std::vector <int> img){
   for (int i = 0; i < img.size(); i++)
     bit_seq = bit_seq + encoder.at(img[i]);
 
-  std::cout << bit_seq << "\n";
-
   for (int i = 0; i < bit_seq.size(); i++) {
     group = group + bit_seq[i];
     if (group.size() == 8) {
@@ -30,7 +28,7 @@ void compress_data (std::vector <int> img){
   encrypted = encrypted + str_to_char(edge_case);
   std::ofstream f, g;
   f.open ("compressed/data.txt");
-  g.open ("compressed/key.txt");
+  g.open ("compressed/decryption_map.txt");
   f << (8 - group.size()) << encrypted;
   std::map <int, std::string>::iterator itr;
   for (itr = encoder.begin(); itr != encoder.end(); ++itr) {
