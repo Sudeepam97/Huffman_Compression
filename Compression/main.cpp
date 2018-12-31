@@ -61,7 +61,7 @@ int main() {
   //list_size = encoder.size();
   //std::cout << "The size is: " << list_size << '\n';
   //print_codes(list_size);
-  compress_data(raw_data);
+  compress_data(raw_data, choice);
   return 1;
 }
 

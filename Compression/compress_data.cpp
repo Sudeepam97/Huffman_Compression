@@ -9,38 +9,46 @@
 
 extern std::map <int, std::string> encoder;
 
-void compress_data (std::vector <int> img){
-  std::string bit_seq = "", group = "", encrypted = "";
+void compress_data (std::vector <int> raw_data, int choice){
 
-  for (int i = 0; i < img.size(); i++)
-    bit_seq = bit_seq + encoder.at(img[i]);
+  // Write the key to the file.
+  std::ofstream key("compressed/decryption_map.txt");
+  std::map <int, std::string>::iterator itr;
+  for (itr = encoder.begin(); itr != encoder.end(); ++itr) {
+    key << itr->first << '\n' << itr->second << "\n";
+  }
 
+  // Generate the bit stream (minus the edge cases)
+  std::string bit_seq = "";
+  for (int i = 0; i < raw_data.size(); i++)
+    bit_seq = bit_seq + encoder.at(raw_data[i]);
+
+  // Include the information about unnecessary bits and text/image bit in the key.
+  key << generate_file(bit_seq) << "\n" << choice;
+  key.close();
+
+  std::cout << "Done. Look inside the directory named 'compressed'" << "\n";
+}
+
+int generate_file (std::string bit_seq){
+  std::string group = "";
+  std::ofstream f("compressed/data.txt");
+  // Generate the enrypted message (minus the edge case)
   for (int i = 0; i < bit_seq.size(); i++) {
     group = group + bit_seq[i];
     if (group.size() == 8) {
-      encrypted = encrypted + str_to_char(group);
+      f << str_to_char(group) << "\n";
       group = "";
     }
   }
-
+  // Calculate the number of extra bits and generate the edge case
   std::string edge_case((8 - group.size()), '0');
-  edge_case = group + edge_case;
-  encrypted = encrypted + str_to_char(edge_case);
-  std::ofstream f, g;
-  f.open ("compressed/data.txt");
-  g.open ("compressed/decryption_map.txt");
-  f << (8 - group.size()) << encrypted;
-  std::map <int, std::string>::iterator itr;
-  for (itr = encoder.begin(); itr != encoder.end(); ++itr) {
-    g << itr->first << '\n' << itr->second << "\n";
-  }
-  std::cout << "Done. Look inside the directory named 'compressed'" << "\n";
+  f << str_to_char(group + edge_case);
   f.close();
-  g.close();
+  return (8 - group.size());
 }
 
-char str_to_char(std::string group)
-{
+int str_to_char(std::string group){
     std::bitset<8> temp(group);
     return temp.to_ulong();
 }

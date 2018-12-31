@@ -1,6 +1,7 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+#include <vector>
 #include <bitset>
 #include <map>
 
@@ -31,11 +32,11 @@ int main() {
   std::map <std::string, int> decoder;
   std::string key = "";
   int value;
-  while (g >> temp) {
-    if (count % 2 != 0) {
+  while (g >> temp){
+    if (count % 2 != 0){
       value = std::stoi(temp);
     }
-    else if (count % 2 == 0) {
+    else if (count % 2 == 0){
       key = temp;
       decoder.insert(std::pair <std::string, int>(key, value));
     }
@@ -45,18 +46,38 @@ int main() {
   // We must discard the last n bits of the bit stream while decrypting.
   int n = encrypted_data[0] - 48;
   // Decrypt the bit stream.
-  std::string decoded_msg = "";
+  int choice = 0;
+  std::cout << "text(1) or image(2)?" << "\n";
+  std::cin >> choice;
   temp = "";
-  for (int i = 0; i < (binary.size() - n); i++){
-    temp = temp + binary[i];
-    if (decoder.count(temp)){
-      decoded_msg = decoded_msg + char(decoder.at(temp));
+
+  // Text
+  if (choice == 1) {
+    std::string decoded_text = "";
+    for (int i = 0; i < (binary.size() - n); i++){
+      temp = temp + binary[i];
+      if (decoder.count(temp))
+        decoded_text = decoded_text + char(decoder.at(temp));
       temp = "";
     }
+    std::cout << decoded_text;
   }
-  
-  //Display the decoded message.
-  std::cout << decoded_msg;
+  // Image
+  else if (choice == 2){
+    std::vector <int> decoded_image;
+    for (int i = 0; i < (binary.size() - n); i++){
+      temp = temp + binary[i];
+      if (decoder.count(temp))
+        decoded_image.push_back(decoder.at(temp));
+      temp = "";
+    }
+    for (int i = 0; i < decoded_image.size(); i++)
+      std::cout << decoded_image.at(i) << "\n";
+  }
+  // Invalid Input
+  else ()
+    std::cout << "Invalid Choice" <, "\n";
+  ///////
   return 1;
 }
 
