@@ -3,6 +3,6 @@
 
 void compress_data (std::vector <int>, int);
 int generate_file(std::string);
-int str_to_char(std::string);
+char str_to_char(std::string);
 
 #endif

@@ -9,7 +9,7 @@ std::string binary_of_char(char);
 
 int main() {
   std::string temp = ""; // Would be useful to store temporary srtings.
-  int count = 1; // Would be used as a counter when needed.
+  int cnt = 1; // Would be used as a counter when needed.
 
   // Read the encrypted data.
   std::ifstream f("data.txt");
@@ -23,7 +23,7 @@ int main() {
 
   // Generate the bit stream from the encrypted message.
   std::string binary = "";
-  for (int i = 1; i < encrypted_data.size(); i++){
+  for (int i = 0; i < encrypted_data.size(); i++){
     binary = binary + binary_of_char(encrypted_data[i]);
   }
 
@@ -33,51 +33,55 @@ int main() {
   std::string key = "";
   int value;
   while (g >> temp){
-    if (count % 2 != 0){
+    if (cnt % 2 != 0){
       value = std::stoi(temp);
     }
-    else if (count % 2 == 0){
+    else if (cnt % 2 == 0){
       key = temp;
       decoder.insert(std::pair <std::string, int>(key, value));
+      //std::cout << value << "\n" << key << "\n";
     }
-    count++;
+    cnt++;
   }
+  g.close();
 
-  // We must discard the last n bits of the bit stream while decrypting.
-  int n = encrypted_data[0] - 48;
+  // Extract header information
+  std::ifstream h("header.txt");
+  int n, choice;
+  h >> n;
+  h >> choice;
+  h.close();
+
+
   // Decrypt the bit stream.
-  int choice = 0;
-  std::cout << "text(1) or image(2)?" << "\n";
-  std::cin >> choice;
   temp = "";
-
   // Text
   if (choice == 1) {
+    std::cout << "decompressing text" << "\n";
     std::string decoded_text = "";
     for (int i = 0; i < (binary.size() - n); i++){
       temp = temp + binary[i];
-      if (decoder.count(temp))
+      if (decoder.count(temp)){
         decoded_text = decoded_text + char(decoder.at(temp));
-      temp = "";
+        temp = "";
+      }
     }
-    std::cout << decoded_text;
+    std::cout << decoded_text << "\n";
   }
   // Image
   else if (choice == 2){
+    std::cout << "decompressing Image" << "\n";
     std::vector <int> decoded_image;
     for (int i = 0; i < (binary.size() - n); i++){
       temp = temp + binary[i];
-      if (decoder.count(temp))
+      if (decoder.count(temp)){
         decoded_image.push_back(decoder.at(temp));
-      temp = "";
+        temp = "";
+      }
     }
     for (int i = 0; i < decoded_image.size(); i++)
       std::cout << decoded_image.at(i) << "\n";
   }
-  // Invalid Input
-  else ()
-    std::cout << "Invalid Choice" <, "\n";
-  ///////
   return 1;
 }
 
