@@ -15,6 +15,9 @@ traverse_tree.o compress_data.o
 read -p "Press '1' to compress Text and '2' to compress an Image: " -n1 choice
 printf "\n\n"
 
-#if choice = 2 run the python script
+if [ "$choice" = "2" ]
+then
+  python3 read_image.py
+fi 
 
 ./main.o $choice
