@@ -29,27 +29,23 @@ bit stream into a new file to finally compress the original text/image.
 
 std::map <int, std::string> encoder;
 
-int main(){
+int main(int argc, char* argv[]){
   // Ask if debug mode is required.
   std::cout << "Press '1' for debug mode and '2' for compression only: ";
   int debug;
   std::cin >> debug;
   std::cout << '\n';
 
-  // Ask if the user wants to compress a text file or an image.
-  int choice = 0;
-  std::cout << "Press '1' to compress Text and '2' to compress an Image: ";
-  std::cin >> choice;
-  std::cout << '\n';
-
-  // Read the text file or the image.
+  // Read the text file or the image according to the users choice.
+  char choice = *argv[1];
   std::vector<int> raw_data;
-  if (choice == 1)
+  if (choice == '1')
     raw_data = read_text_file();
-  else if (choice == 2)
+  else if (choice == '2')
     raw_data = read_image();
   else {
     std::cout << "error: invalid choice: Press '1' for Text and '2' for images";
+    std::cout << "\n";
     return 1;
   }
 

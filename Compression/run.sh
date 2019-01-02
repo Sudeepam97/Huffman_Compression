@@ -11,3 +11,10 @@ g++ -c compress_data.cpp
 g++ main.cpp -o main.o read_text_file.o read_image.o create_list.o \
 extract_min.o create_parent.o insert_new.o create_huffman_tree.o \
 traverse_tree.o compress_data.o
+
+read -p "Press '1' to compress Text and '2' to compress an Image: " -n1 choice
+printf "\n\n"
+
+#if choice = 2 run the python script
+
+./main.o $choice

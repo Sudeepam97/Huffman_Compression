@@ -9,7 +9,7 @@
 
 extern std::map <int, std::string> encoder;
 
-void compress_data (std::vector <int> raw_data, int choice){
+void compress_data (std::vector <int> raw_data, char choice){
 
   // Write the key to the file.
   std::ofstream key("compressed/decryption_map.txt");
