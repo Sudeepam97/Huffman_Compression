@@ -1,6 +1,6 @@
 #include <fstream>
 #include <vector>
-#include "read_image.h"
+#include "headers/read_image.h"
 
 std::vector <int> read_image(){
   std::vector <int> data;

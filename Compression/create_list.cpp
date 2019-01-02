@@ -1,8 +1,8 @@
 #include <iostream>
 #include <tuple>
 #include <vector>
-#include "node_definition.h"
-#include "create_list.h"
+#include "headers/node_definition.h"
+#include "headers/create_list.h"
 
 std::tuple <node*, node*, int> create_list(std::vector <int> raw_data, int debug){
   node *first_node = NULL; // Pointer to the first_node of the list.

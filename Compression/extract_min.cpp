@@ -1,6 +1,6 @@
 #include <iostream>
-#include "node_definition.h"
-#include "extract_min.h"
+#include "headers/node_definition.h"
+#include "headers/extract_min.h"
 
 /* Traverse through the linked list and find the node having
 the minimum value of frequency (freq). Remove this node from

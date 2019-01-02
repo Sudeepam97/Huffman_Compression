@@ -1,10 +1,10 @@
 #include <iostream>
 #include <tuple>
-#include "node_definition.h"
-#include "extract_min.h"
-#include "create_parent.h"
-#include "insert_new.h"
-#include "create_huffman_tree.h"
+#include "headers/node_definition.h"
+#include "headers/extract_min.h"
+#include "headers/create_parent.h"
+#include "headers/insert_new.h"
+#include "headers/create_huffman_tree.h"
 
 node* create_huffman_tree(std::tuple <node*, node*, int> list){
   node *lc = NULL, *rc = NULL, *parent = NULL;

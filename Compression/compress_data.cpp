@@ -4,8 +4,8 @@
 #include <vector>
 #include <fstream>
 #include <bitset>
-#include "node_definition.h"
-#include "compress_data.h"
+#include "headers/node_definition.h"
+#include "headers/compress_data.h"
 
 extern std::map <int, std::string> encoder;
 

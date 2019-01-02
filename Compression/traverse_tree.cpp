@@ -1,7 +1,7 @@
 #include <string>
 #include <map>
-#include "node_definition.h"
-#include "traverse_tree.h"
+#include "headers/node_definition.h"
+#include "headers/traverse_tree.h"
 
 extern std::map <int, std::string> encoder;
 

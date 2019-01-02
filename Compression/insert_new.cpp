@@ -1,6 +1,6 @@
 #include <iostream>
-#include "node_definition.h"
-#include "insert_new.h"
+#include "headers/node_definition.h"
+#include "headers/insert_new.h"
 
 void insert_new(node *new_node, node **first_node, node **last_node){
   if(*first_node == NULL){ // The Huffman tree has been created.

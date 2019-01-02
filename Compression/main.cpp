@@ -3,13 +3,13 @@
 #include <string>
 #include <vector>
 #include <tuple>
-#include "node_definition.h"
-#include "read_text_file.h"
-#include "read_image.h"
-#include "create_list.h"
-#include "create_huffman_tree.h"
-#include "traverse_tree.h"
-#include "compress_data.h"
+#include "headers/node_definition.h"
+#include "headers/read_text_file.h"
+#include "headers/read_image.h"
+#include "headers/create_list.h"
+#include "headers/create_huffman_tree.h"
+#include "headers/traverse_tree.h"
+#include "headers/compress_data.h"
 
 /* SUMMARY
 -------------
