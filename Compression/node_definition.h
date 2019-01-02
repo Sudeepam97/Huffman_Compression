@@ -1,22 +1,31 @@
 #ifndef NODEDEFINITION_H_
 #define NODEDEFINITION_H_
 
-// Due to the nature of Huffman's algorithm, we need to create an array
-// like data structure, where every element of the array is a root of a
-// binary tree. These binary trees will essentially be the subtrees of
-// our Huffman tree. Since we need the array to be dynamic in nature, we
-// must use a linkedlist. The most suitable one for this task would be a
-// doubly linkedlist. Hence we create a structure which is essentially a
-// hybrid of a binary tree and a doubly linked list.
+/*
+Our aim is to store each unique character/pixel value, along with their
+frequency in a list and eventually convert this list into a Huffman tree.
+One way to do this is by using a data structure, which is essentially a
+doubly linked list in the beginning, but whose nodes are eventually
+reconnected to convert the structure into a binary tree.
+
+Due to the nature of Huffman's algorithm, in this "list to tree" transition,
+we will encounter a state in which some nodes of our doubly linked list will
+act like the roots of the sub-trees of our final Huffman tree. This is why,
+each node of our structure should be able to connect as a list, and as a tree
+simultaneously.
+
+A structure with the following properties has been defined below.
+*/
 
 struct node {
-    int data; // The integer which is to be encoded
-    int freq;  // The number of times this character appears in the message
+    int data; // The character/pixel value whose huffman code is needed
+    int freq;  // The frequency of this character/pixel value
     struct node *left, *right, *leftc, *rightc;
-    // leftc: Points to the left child of the binary sub-tree.
-    // rightc: Points to the right child of the binary sub-tree.
-    // left: Points to the address of the node that is left to the given node.
-    // right: Points to the address of the node that is right to the given node.
+    /*
+    leftc: Pointer to the left child in a binary sub-tree.
+    rightc: Pointer to the right child in a binary sub-tree.
+    left: Pointer to the the node that is left to the given node in the list.
+    right: Pointer to the the node that is right to the given node. */
 };
 
 #endif

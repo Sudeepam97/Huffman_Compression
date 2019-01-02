@@ -2,8 +2,9 @@
 #include "node_definition.h"
 #include "insert_new.h"
 
-void insert_new(node *new_node, node **first_node, node **last_node) {
-  if(*first_node == NULL) {
+void insert_new(node *new_node, node **first_node, node **last_node){
+  if(*first_node == NULL){ // The Huffman tree has been created.
+    // Set 'first_node' to be the root of the Huffman tree.
     *first_node = new_node;
   }
   else {

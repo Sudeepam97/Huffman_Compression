@@ -1,4 +1,4 @@
-mkdir compressed
+mkdir -p compressed
 g++ -c read_text_file.cpp
 g++ -c read_image.cpp
 g++ -c create_list.cpp
