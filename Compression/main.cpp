@@ -70,7 +70,8 @@ int main(int argc, char* argv[]){
     std::cout << "Number of unique characters are: " << num_uniq_vals << '\n';
     print_codes(num_uniq_vals);
   }
-
+  
+  std::cout << "Compressing your file. It will take a few moments..." << "\n";
   compress_data(raw_data, choice);
   return 1;
 }

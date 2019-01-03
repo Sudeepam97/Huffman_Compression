@@ -8,27 +8,19 @@
 std::string binary_of_char(char);
 
 int main() {
-  std::string temp = ""; // Would be useful to store temporary srtings.
+  std::string temp = ""; // Would be useful to store temporary strings.
   int cnt = 1; // Would be used as a counter when needed.
 
-  // Read the encrypted data.
-  std::ifstream f("data.txt");
-  std::string encrypted_data;
-  f.seekg(0, std::ios::end); // Seek to the last character (0th character from the end of the file).
-  int mesg_len = f.tellg();  // Report the location of the seek (equal to the length of encrypted_data).
-  f.seekg(0, std::ios::beg); // Seek to the first character (0th character from the begining of the file).
-  encrypted_data.resize(mesg_len);
-  f.read(&encrypted_data[0], mesg_len);
-  f.close();
-
-  // Generate the bit stream from the encrypted message.
+  // Read the encrypted data and generate the bit stream.
+  std::ifstream f("compressed_data.txt");
   std::string binary = "";
-  for (int i = 0; i < encrypted_data.size(); i++){
-    binary = binary + binary_of_char(encrypted_data[i]);
+  char ch;
+  while (f.get(ch)){
+    binary = binary + binary_of_char(ch);
   }
 
   // Read the hashmap that is essential to decrypt the bit stream.
-  std::ifstream g("decryption_map.txt");
+  std::ifstream g("code_map.txt");
   std::map <std::string, int> decoder;
   std::string key = "";
   int value;
@@ -39,50 +31,48 @@ int main() {
     else if (cnt % 2 == 0){
       key = temp;
       decoder.insert(std::pair <std::string, int>(key, value));
-      //std::cout << value << "\n" << key << "\n";
     }
     cnt++;
   }
   g.close();
 
-  // Extract header information
-  std::ifstream h("header.txt");
+  // Read the key which is also essential for decompression.
+  std::ifstream h("key.txt");
   int n, choice;
   h >> n;
   h >> choice;
   h.close();
 
-
   // Decrypt the bit stream.
   temp = "";
-  // Text
-  if (choice == 1) {
-    std::cout << "decompressing text" << "\n";
-    std::string decoded_text = "";
+  if (choice == 1){ // Text
+    std::cout << "decompressing text..." << "\n" << "\n";
+    std::string decompressed_text = "";
     for (int i = 0; i < (binary.size() - n); i++){
       temp = temp + binary[i];
       if (decoder.count(temp)){
-        decoded_text = decoded_text + char(decoder.at(temp));
+        decompressed_text = decompressed_text + char(decoder.at(temp));
         temp = "";
       }
     }
-    std::cout << decoded_text << "\n";
+    std::cout << decompressed_text << "\n";
+    return 1;
   }
-  // Image
-  else if (choice == 2){
+
+  else if (choice == 2){ // Image
     std::cout << "decompressing Image" << "\n";
-    std::vector <int> decoded_image;
+    std::vector <int> decompressed_image;
     for (int i = 0; i < (binary.size() - n); i++){
       temp = temp + binary[i];
       if (decoder.count(temp)){
-        decoded_image.push_back(decoder.at(temp));
+        decompressed_image.push_back(decoder.at(temp));
         temp = "";
       }
     }
-    for (int i = 0; i < decoded_image.size(); i++)
-      std::cout << decoded_image.at(i) << "\n";
+    for (int i = 0; i < decompressed_image.size(); i++)
+      std::cout << decompressed_image.at(i) << "\n";
   }
-  return 1;
+  return 2;
 }
 
 std::string binary_of_char(char ch) {

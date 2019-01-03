@@ -1,4 +1,4 @@
-mkdir -p compressed
+mkdir -p output
 g++ -c read_text_file.cpp
 g++ -c read_image.cpp
 g++ -c create_list.cpp
@@ -18,6 +18,6 @@ printf "\n\n"
 if [ "$choice" = "2" ]
 then
   python3 read_image.py
-fi 
+fi
 
 ./main.o $choice
