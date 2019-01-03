@@ -1,7 +1,6 @@
 #include <iostream>
 #include <fstream>
 #include <string>
-#include <vector>
 #include <bitset>
 #include <map>
 
@@ -37,16 +36,19 @@ int main() {
   g.close();
 
   // Read the key which is also essential for decompression.
-  std::ifstream h("key.txt");
+  std::ifstream k("key.txt");
   int n, choice;
-  h >> n;
-  h >> choice;
-  h.close();
+  k >> n;
+  k >> choice;
+  k.close();
 
   // Decrypt the bit stream.
   temp = "";
-  if (choice == 1){ // Text
-    std::cout << "decompressing text..." << "\n" << "\n";
+  std::ofstream out("decompressed_data.txt");
+
+  // For Text
+  if (choice == 1){
+    std::cout << "decompressing Text...";
     std::string decompressed_text = "";
     for (int i = 0; i < (binary.size() - n); i++){
       temp = temp + binary[i];
@@ -55,27 +57,27 @@ int main() {
         temp = "";
       }
     }
-    std::cout << decompressed_text << "\n";
+    out << decompressed_text;
+    std::cout << "DONE" << '\n';
     return 1;
   }
 
-  else if (choice == 2){ // Image
-    std::cout << "decompressing Image" << "\n";
-    std::vector <int> decompressed_image;
+  // For Image
+  else if (choice == 2){
+    std::cout << "decompressing Image...";
     for (int i = 0; i < (binary.size() - n); i++){
       temp = temp + binary[i];
       if (decoder.count(temp)){
-        decompressed_image.push_back(decoder.at(temp));
+        out << decoder.at(temp) << "\n";
         temp = "";
       }
     }
-    for (int i = 0; i < decompressed_image.size(); i++)
-      std::cout << decompressed_image.at(i) << "\n";
+    std::cout << "DONE" << '\n';
+    return 2;
   }
-  return 2;
 }
 
-std::string binary_of_char(char ch) {
+std::string binary_of_char(char ch){
     std::bitset<8> temp(ch);
     return temp.to_string();
 }
