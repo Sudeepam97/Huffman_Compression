@@ -21,4 +21,17 @@ You can now look inside a newly created directory called **output** to see the r
 
 Technically, **compressed_data.txt** is our compressed data file. However, it is important to note that all three of these files are essential to obtain the orignal data back, and therefore, if we are deploying this algorithm in the real world, we should compare the combined size of these three files to the original file and should not limit ourselves by comparing the size of compressed_data.txt and the original file only.
 
-This is a reason why Huffman's algorithm is not good to losslessly compress files that are already very small (say a few bytes) in size.
+This is a reason why Huffman's algorithm is not good to compress files that are already very small (say a few bytes) in size.
+
+Now, witnessing text compression first hand with this implementation is pretty straightforward, but image compression is slightly more complicated. One needs to understand that the size of an image is dependent on what format it is saved in. The only true size of an image is equal to **(number of pixels in the image * colour depth)**. This is what the size of an uncompressed bitmap or an uncompressed TIFF is.
+
+However, modern image viewing softwares can interpret all types of image formats such as JPEGs and PNGs. Essentially, these formats denote a form of compression that has been applied on the original uncompressed image and most of these compression techniques, infact, **use the Huffman's algorithm as a starting point,** and therefore, are better than it.
+
+Therefore, although with a text file, you can actually see the difference in size by comparing the original file and the output file that this code has produced, but with images, due to the above reason, you have to either arrange an uncompressed TIFF (like the one that I have used here) or, compare the actual size **(number of pixels in the image * colour depth)** of a JPEG or a PNG or any other such format with the output.
+
+That being said, to decompress the compressed data file that this program has produced, move the contents of the output directory to the directory called **Decompression** and *cd* to it, then type:
+```
+g++ decompress_data.cpp -o decompress.o
+./decompress.o
+```
+This, generates the original text file for a compressed text file, and a text file containing the raw pixel values for an image.
