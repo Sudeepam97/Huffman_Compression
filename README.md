@@ -25,7 +25,7 @@ This is a reason why Huffman's algorithm is not good to compress files that are 
 
 Now, witnessing text compression first hand with this implementation is pretty straightforward, but image compression is slightly more complicated. One needs to understand that the size of an image is dependent on what format it is saved in. The only true size of an image is equal to **(number of pixels in the image * colour depth)**. This is what the size of an uncompressed bitmap or an uncompressed TIFF is.
 
-However, modern image viewing softwares can interpret all types of image formats such as JPEGs and PNGs. Essentially, these formats denote a form of compression that has been applied on the original uncompressed image and most of these compression techniques, infact, **use the Huffman's algorithm as a starting point,** and therefore, are better than it.
+However, modern image viewing softwares can interpret all types of image formats such as JPEGs and PNGs. Essentially, these formats denote a form of compression that has been applied on the original uncompressed image and most of these compression techniques, infact, **use the Huffman's algorithm as a starting point,** and therefore, are usually better than it.
 
 Therefore, although with a text file, you can actually see the difference in size by comparing the original file and the output file that this code has produced, but with images, due to the above reason, you have to either arrange an uncompressed TIFF (like the one that I have used here) or, compare the actual size **(number of pixels in the image * colour depth)** of a JPEG or a PNG or any other such format with the output.
 
