@@ -6,7 +6,7 @@
 
 std::string binary_of_char(char);
 
-int main() {
+int main(){
   std::string temp = ""; // Would be useful to store temporary strings.
   int cnt = 1; // Would be used as a counter when needed.
 
@@ -59,7 +59,6 @@ int main() {
     }
     out << decompressed_text;
     std::cout << "DONE" << '\n';
-    return 1;
   }
 
   // For Image
@@ -73,8 +72,8 @@ int main() {
       }
     }
     std::cout << "DONE" << '\n';
-    return 2;
   }
+  return 0;
 }
 
 std::string binary_of_char(char ch){
