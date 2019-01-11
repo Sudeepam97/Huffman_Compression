@@ -20,7 +20,7 @@ A structure with the following properties has been defined below.
 struct node {
     int data; // The character/pixel value whose huffman code is needed
     int freq;  // The frequency of this character/pixel value
-    struct node *left, *right, *leftc, *rightc;
+    node *left, *right, *leftc, *rightc;
     /*
     leftc: Pointer to the left child in a binary sub-tree.
     rightc: Pointer to the right child in a binary sub-tree.
