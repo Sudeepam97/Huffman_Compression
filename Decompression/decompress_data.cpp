@@ -2,7 +2,7 @@
 #include <fstream>
 #include <string>
 #include <bitset>
-#include <map>
+#include <unordered_map>
 
 std::string binary_of_char(char);
 
@@ -20,7 +20,7 @@ int main(){
 
   // Read the hashmap that is essential to decrypt the bit stream.
   std::ifstream g("code_map.txt");
-  std::map <std::string, int> decoder;
+  std::unordered_map <std::string, int> decoder;
   std::string key = "";
   int value;
   while (g >> temp){
@@ -29,7 +29,7 @@ int main(){
     }
     else if (cnt % 2 == 0){
       key = temp;
-      decoder.insert(std::pair <std::string, int>(key, value));
+      decoder[key] = value;
     }
     cnt++;
   }

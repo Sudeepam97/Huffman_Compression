@@ -1,9 +1,9 @@
 #include <string>
-#include <map>
+#include <unordered_map>
 #include "headers/node_definition.h"
 #include "headers/traverse_tree.h"
 
-extern std::map <int, std::string> encoder;
+extern std::unordered_map <int, std::string> encoder;
 
 void traverse_tree(node* root, char this_code[], int index){
   // Assign 0 to left edge and recur
@@ -21,6 +21,6 @@ void traverse_tree(node* root, char this_code[], int index){
     std::string code = "";
     for (int i = 0; i < index; ++i)
       code = code + this_code[i] ;
-    encoder.insert(std::pair <int, std::string>(root->data, code));
+    encoder[root->data] = code;
   }
 }

@@ -1,5 +1,5 @@
 #include <iostream>
-#include <map>
+#include <unordered_map>
 #include <string>
 #include <vector>
 #include <tuple>
@@ -22,12 +22,12 @@ Refer the source of the file called 'node_definition.h' for more details about
 the data structure used.
 
 After the creation of the tree, we read the Huffman codes for each character
-and store the character-code pair in a hashmap. We replace each character or
+and store the character-code pair in a hashtable. We replace each character or
 pixel in the orignal text/image by its equivalent Huffman code and write this
 bit stream into a new file to finally compress the original text/image.
 */
 
-std::map <int, std::string> encoder;
+std::unordered_map <int, std::string> encoder;
 
 int main(int argc, char* argv[]){
   // Ask if debug mode is required.
@@ -70,14 +70,14 @@ int main(int argc, char* argv[]){
     std::cout << "Number of unique characters are: " << num_uniq_vals << '\n';
     print_codes(num_uniq_vals);
   }
-  
+
   std::cout << "Compressing your file. It will take a few moments..." << "\n";
   compress_data(raw_data, choice);
   return 1;
 }
 
 void print_codes(int num_uniq_vals){
-  std::map <int, std::string>::iterator itr;
+  std::unordered_map <int, std::string>::iterator itr;
   for (itr = encoder.begin(); itr != encoder.end(); ++itr){
     std::cout << itr->first << '\t' << itr->second << "\n";
   }

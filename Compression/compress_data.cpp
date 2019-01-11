@@ -1,5 +1,5 @@
 #include <iostream>
-#include <map>
+#include <unordered_map>
 #include <string>
 #include <vector>
 #include <fstream>
@@ -7,12 +7,12 @@
 #include "headers/node_definition.h"
 #include "headers/compress_data.h"
 
-extern std::map <int, std::string> encoder;
+extern std::unordered_map <int, std::string> encoder;
 
 void compress_data (std::vector <int> raw_data, char choice){
   // Save the (chars/pixel --> huffman code) mapping into a file.
   std::ofstream huff("output/code_map.txt");
-  std::map <int, std::string>::iterator itr;
+  std::unordered_map <int, std::string>::iterator itr;
   for (itr = encoder.begin(); itr != encoder.end(); ++itr){
     huff << itr->first << '\n' << itr->second << "\n";
   }
