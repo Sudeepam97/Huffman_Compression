@@ -1,6 +1,6 @@
 #ifndef CREATEHUFFMANTREE_H_
 #define CREATEHUFFMANTREE_H_
 
-node* create_huffman_tree(std::tuple <node*, node*, int>);
+heap_node* create_huffman_tree(std::unordered_map<int, int>&);
 
 #endif

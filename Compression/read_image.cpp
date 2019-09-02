@@ -1,13 +1,10 @@
 #include <fstream>
-#include <vector>
+#include <unordered_map>
 #include "headers/read_image.h"
 
-std::vector <int> read_image(){
-  std::vector <int> data;
+void read_image(std::unordered_map<int, int> &raw_data){
   std::ifstream f("data_to_compress/image.txt");
   int temp = 0;
-  while (f >> temp){
-    data.push_back(temp);
-  }
-  return data;
+  while (f >> temp)
+    raw_data[temp]++;
 }

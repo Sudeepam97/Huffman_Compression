@@ -1,30 +1,41 @@
-#include <iostream>
-#include <tuple>
-#include "headers/node_definition.h"
-#include "headers/extract_min.h"
-#include "headers/create_parent.h"
-#include "headers/insert_new.h"
-#include "headers/create_huffman_tree.h"
+# include <vector>
+# include <unordered_map>
+# include <queue>
+# include "headers/heap_node_def.h"
+# include "headers/create_huffman_tree.h"
 
-node* create_huffman_tree(std::tuple <node*, node*, int> list){
-  node *lc = NULL, *rc = NULL, *parent = NULL;
-  node *first_node = NULL, *last_node = NULL;
-  int list_size = 0;
-  std::tie(first_node, last_node, list_size) = list;
-  while(list_size != 0){
-    // Extract the left child for the currrent iteration
-    lc = extract_min(&first_node, &last_node);
-    list_size--;
-    // Extract the right child for the current iteration
-    rc = extract_min(&first_node, &last_node);
-    list_size--;
-    // Parent of the currrent left and right child
-    parent = create_parent(lc, rc);
-    // Insert this parent node into our list
-    insert_new(parent, &first_node, &last_node);
-    if(list_size != 0){
-      list_size++;
-    }
+struct heap_compare {
+  bool operator() (heap_node *a, heap_node *b) {
+    return (a->freq > b->freq);
   }
-  return first_node;
+};
+
+heap_node* create_huffman_tree(std::unordered_map<int, int> &raw_data) {
+  // Push the raw data into the heap
+  std::priority_queue<heap_node*, std::vector<heap_node*>, heap_compare> huff_tree;
+  std::unordered_map<int, int>::iterator itr;
+  for (itr = raw_data.begin(); itr != raw_data.end(); itr++){
+    heap_node *curr = new heap_node(itr->first, itr->second);
+    huff_tree.push(curr);
+  }
+
+  // Iterate till only the root of the huffman tree remains
+  while (huff_tree.size() != 1) {
+    // Extract the two minimum frequency nodes from heap
+    heap_node *left_c = huff_tree.top();
+    huff_tree.pop();
+    heap_node *right_c = huff_tree.top();
+    huff_tree.pop();
+
+    // Create a new parent node with frequency equal
+    // to the sum of the two child node frequencies.
+    heap_node *parent = new heap_node(0, left_c->freq + right_c->freq);
+    parent->left = left_c;
+    parent->right = right_c;
+
+    // Push the new node back to the heap
+    huff_tree.push(parent);
+  }
+
+  return huff_tree.top();
 }
