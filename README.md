@@ -7,7 +7,7 @@ Make sure you have the following dependencies installed:
 - NumPy (v1.15.4)
 - SciPy (v1.1.0)
 
-Also, either changge the input path in the code, or make sure that the path of your sample text files is `Compression/data_to_compress/text_file.txt` and the path of your sample images is `Compression/data_to_compress/image.tiff`
+Also, either change the input path in the code, or make sure that the path of your sample text files is `Compression/data_to_compress/text_file.txt` and the path of your sample images is `Compression/data_to_compress/image.tiff`
 
 To compress a file, fire up your terminal at the top directory of this project, and type:
 ```sh
