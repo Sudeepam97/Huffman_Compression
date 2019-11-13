@@ -20,7 +20,7 @@ int main(){
 
   // Read the hashmap that is essential to decrypt the bit stream.
   std::ifstream g("code_map.txt");
-  std::unordered_map <std::string, int> decoder;
+  std::unordered_map<std::string, int> decoder;
   std::string key = "";
   int value;
   while (g >> temp){
